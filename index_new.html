@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="edit-Type" edit="text/html; charset=utf-8">
+<meta name="robots" content="noindex">
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<link href="//fonts.googleapis.com/css?family=Lato:400|Inconsolata" rel="stylesheet" type="text/css">
+<link href="https://rawgit.com/Semantic-Org/Semantic-UI/next/dist/semantic.css" rel="stylesheet" type="text/css">
+
+
+<style type="text/css" media="screen">
+body {
+  padding: 5em;
+}
+
+.ui.text.container {
+  font-size: 1.14285714rem;
+}
+
+</style>
+
+</head>
+<body>
+
+<div class="ui centered grid">
+  <div class="row">
+    <div class="ui center aligned">
+      <h1 class="ui header">Incident (Bug) Submission Form</h1>
+      <form id="incidentForm" class="ui form">
+        <br>
+        <button id="feedback-link" class="ui primary button">Open the Bug Form</button>
+      </form>
+
+    </div> <!-- ui center aligned -->
+  </div>
+
+  <div class="ui list">
+    <div class="item">
+      <i class="large announcement icon"></i>
+      <div class="middle aligned content">
+        <div class="ui red basic horizontal label">Urgent Bug</div> An issues that inhibits the user's ability to use the system and there are no work arounds.
+      </div>
+    </div>
+  </div> <!-- ui back -->
+  <div class="row">
+    <div class="ui divider"></div>
+  </div>
+  <div class="left aligned eight wide column">
+    <h3 class="ui header">New Bug Reporting Policies for JIRA</h3>
+
+    <h4 class="ui header">Bug Submission Process</h4>
+    <h4 class="ui sub header">Fill out each field in the form including the priority.</h4>
+
+    <div class="ui very relaxed list">
+      <div class="item">
+        <div class="header">How do I add an incident or bug issue?</div>
+        To add bug tasks and receive notifications from JIRA you must have an account so please create your JIRA accounts! <a href="https://ilabdev.atlassian.net/">https://ilabdev.atlassian.net/</a>
+        <ol class="ui list">
+          <li class="item">Click on the <em>Open the Bug Form </em>button</li>
+          <li class="item">The <em>Summary</em> is the title.</li>
+          <li class="item">Please fill out all questions in the description field.</li>
+          <li class="item">Do not forget to include images or videos (you can save videos to google+ <a href="https://drive.google.com/drive/folders/0B4dQNjeCUQLAemlKaVFmYkVDNTA">here</a>).</li>
+          <li class="item">Do not forget to update the priority.
+          <ol>
+            <li>It is very important that you select <strong>Urgent</strong> for urgent bugs or tasks.</li>
+          </ol>
+          </li>
+          <li class="item">If someone else needs to be added as a watcher please indicate that in the description.</li>
+          <li class="item">Once the bug is submitted, <em>Priority</em> should only be updated by Product Management and Engineering Management.</li>
+        </ol>
+      </div>
+    </div>
+  </div> <!-- column -->
+  <div class="left aligned eight wide column">
+    <h3 class="ui header">
+      Tracking Bugs and Bug Resolution
+    </h3>
+    <div class="ui very relaxed list">
+      <div class="item"><div class="header">How do I track bugs?</div>
+        <ol class="ui list">
+          <li class="item">You will be added as a reporter to any bug you report.</li>
+          <li class="item">You will receive updates when the JIRA issue is updated.</li>
+          <li class="item">To track when a task should be completed, please reference the <em>Due Date</em> on the issue.</li>
+          <li class="item">Use <em>Search for Issues</em> to create a filter to track all bugs that need your attention.</li>
+          <li class="item">If an issue needs assistance from the reporter, another iLab team member or a third party it will be marked as <em>On Hold</em> with a comment as to what is needed to continue resolving the issue.</li>
+        </ol>
+      </div>
+      <div class="item"><div class="header">What is the bug resolutions workflow?</div>
+        <ol class="ui list">
+          <li class="ui item">If the issue is changed to <em>User Acceptance Testing</em> (UAT) then it is waiting for the Reporter to review the issue and confirm it is completed.</li>
+          <li class="ui item">The reporter should receive a notification letting them know which environment the issues was deployed to. (prd-dfci, prd-my, prd-zurich, demo or other test environments).</li>
+          <li class="ui item">Or the developer will leave a comment clearly letting the reporter know when and where they can confirm the issue is fixed.</li>
+          <li class="ui item">Once the reporter has confirmed the issue is fixed, then he/she can move the issue to DONE.</li>
+        </ol>
+      </div>
+
+    </div>
+
+  </div> <!-- column -->
+  <!-- four column centered row -->
+
+</div>
+
+<script>
+
+// Requires jQuery!
+jQuery.ajax({
+url: "https://ilabdev.atlassian.net/s/f854cdb069361040ccdd74988bb7959f-T/-e9m5hs/72002/3c466bf91a4efe460c93d6b348cf1cac/2.0.13/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=2390c3d2",
+type: "get",
+cache: true,
+dataType: "script"
+});
+
+window.ATL_JQ_PAGE_PROPS = {
+  "triggerFunction": function(showCollectorDialog) {
+    jQuery("#feedback-link").click(function(e) {
+        e.preventDefault();
+        showCollectorDialog();
+        });
+  },
+
+
+  // ==== we add the code below to set the field values ====
+fieldValues: {
+          summary : ' ',
+          description : '*Issue Description:* \n\n*What exact steps were taken up to experiencing the issue?* \n\n*What happened?* \n\n*What was supposed to happen?* \n\n*User(s) it is affecting:* \n\n*User login email:* \n\n*User role(s):* \n\n*System(s):* \n\n*Link where issue occurred:* ',
+          priority : '3'
+             }};
+
+
+</script>
+
+</body>
+
+</html>
