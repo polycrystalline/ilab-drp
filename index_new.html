@@ -40,12 +40,36 @@ body {
 
   <div class="ui list">
     <div class="item">
-      <i class="large announcement icon"></i>
-      <div class="middle aligned content">
+      <div class="middle">
         <div class="ui red basic horizontal label">Urgent Bug</div> An issues that inhibits the user's ability to use the system and there are no work arounds.
       </div>
     </div>
   </div> <!-- ui back -->
+
+  <!-- EXAMPLES -->
+  <div class="row">
+    <div class="ui huge horizontal divided list">
+      <div class="item">
+        <div class="middle aligned content">
+          <div class="header">Example 1</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="middle aligned content">
+          <div class="header">Example 2</div>
+        </div>
+      </div>
+      <div class="item">
+        <i class="middle aligned content"></i>
+        <div class="content">
+          <div class="header">Example 3</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
   <div class="row">
     <div class="ui divider"></div>
   </div>
@@ -109,7 +133,7 @@ body {
 
 // Requires jQuery!
 jQuery.ajax({
-url: "https://ilabdev.atlassian.net/s/f854cdb069361040ccdd74988bb7959f-T/-e9m5hs/72002/3c466bf91a4efe460c93d6b348cf1cac/2.0.13/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=2390c3d2",
+url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/e3105b/100016/c/1000.0.10/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=2e656d00",
 type: "get",
 cache: true,
 dataType: "script"
@@ -126,8 +150,8 @@ window.ATL_JQ_PAGE_PROPS = {
 
   // ==== we add the code below to set the field values ====
 fieldValues: {
-          summary : ' ',
-          description : '*Issue Description:* \n\n*What exact steps were taken up to experiencing the issue?* \n\n*What happened?* \n\n*What was supposed to happen?* \n\n*User(s) it is affecting:* \n\n*User login email:* \n\n*User role(s):* \n\n*System(s):* \n\n*Link where issue occurred:* ',
+          summary : 'Please describe the issue in 60 words or less',
+          description : 'h6.  Steps to reproduce incident (listed): \n#\n# \n\nh6. Actual Results: \n- \n\nh6. Expected Results:\n- \n\nh6. User Reporting (first name last name; email; iLab role) \n\nh6. Please also provide any other information that might be useful, such as:\n- url: mandatory\n- url to one or more pages where you encountered the bug; or\n- browser: mandatory\n- whether the problem appears every time, only occasionally, only on certain pages, or only in specific circumstances.\n- Link to a video or screencast',
           priority : '3'
              }};
 
