@@ -8,8 +8,10 @@
 <meta name="robots" content="noindex">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<link href="//fonts.googleapis.com/css?family=Lato:400|Inconsolata" rel="stylesheet" type="text/css">
-<link href="https://rawgit.com/Semantic-Org/Semantic-UI/next/dist/semantic.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
 
 
 <style type="text/css" media="screen">
@@ -51,7 +53,7 @@ body {
     <div class="ui huge horizontal divided list">
       <div class="item">
         <div class="middle aligned content">
-          <div class="header">Example 1</div>
+          <div class="header"><a id="example1">Example 1</a></div>
         </div>
       </div>
       <div class="item">
@@ -128,9 +130,34 @@ body {
 
 </div>
 
-<script>
+<!-- Examples -->
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Example 1
+  </div>
+  <div class="image content">
+    <div class="image">
+      <img alt="example-one" src="images/example1-description-links.png"
+      style="max-width: 650px">
+    </div>
+    <div class="description">
+      A description can appear on the right
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui button">Cancel</div>
+    <div class="ui button">OK</div>
+  </div>
+</div>
 
-// Requires jQuery!
+<script>
+$(document).ready(function(){
+  $('.ui.modal').modal('attach events', '#example1', 'show');
+});
+</script>
+
+<script>
 jQuery.ajax({
 url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/e3105b/100016/c/1000.0.10/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=2e656d00",
 type: "get",
