@@ -8,10 +8,8 @@
 <meta name="robots" content="noindex">
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-
+<link href="//fonts.googleapis.com/css?family=Lato:400|Inconsolata" rel="stylesheet" type="text/css">
+<link href="https://rawgit.com/Semantic-Org/Semantic-UI/next/dist/semantic.css" rel="stylesheet" type="text/css">
 
 
 <style type="text/css" media="screen">
@@ -42,35 +40,12 @@ body {
 
   <div class="ui list">
     <div class="item">
-      <div class="middle">
-        <div class="ui red basic horizontal label">Urgent Bug</div> An issues that inhibits the user's ability to use the system and there are no work arounds.
+      <i class="large announcement icon"></i>
+      <div class="middle aligned content">
+        <div class="ui red basic horizontal label">Urgent Bug</div> An issue that inhibits the user's ability to use the system and there are no work arounds.
       </div>
     </div>
   </div> <!-- ui back -->
-
-  <!-- EXAMPLES -->
-  <div class="row">
-    <div class="ui huge horizontal divided list">
-      <div class="item">
-        <div class="middle aligned content">
-          <div class="header"><a id="example1">Example 1</a></div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="middle aligned content">
-          <div class="header">Example 2</div>
-        </div>
-      </div>
-      <div class="item">
-        <i class="middle aligned content"></i>
-        <div class="content">
-          <div class="header">Example 3</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
 
   <div class="row">
     <div class="ui divider"></div>
@@ -108,18 +83,19 @@ body {
     <div class="ui very relaxed list">
       <div class="item"><div class="header">How do I track bugs?</div>
         <ol class="ui list">
-          <li class="item">You will be added as a reporter to any bug you report. Please remain logged into JIRA for this to happen automatically.</li>
+          <li class="item">You will be added as a reporter to any bug you report.</li>
           <li class="item">You will receive updates when the JIRA issue is updated.</li>
-          <li class="item">Many factors are considered by Product Development when prioritizing an issue.</li>
+          <li class="item">To track when a task should be completed, please reference the <em>Due Date</em> on the issue.</li>
           <li class="item">Use <em>Search for Issues</em> to create a filter to track all bugs that need your attention.</li>
           <li class="item">If an issue needs assistance from the reporter, another iLab team member or a third party it will be marked as <em>On Hold</em> with a comment as to what is needed to continue resolving the issue.</li>
         </ol>
       </div>
       <div class="item"><div class="header">What is the bug resolutions workflow?</div>
         <ol class="ui list">
-          <li class="ui item">If the issue is changed to <a class="ui mini basic green label">CLOSED & LIVE</a>, you may want to check it yourself. If this incident has been resolved by Engineering adequately, please move the issue to LIVE & CONFIRMED. .</li>
-          <li class="ui item">Every issue goes through QA.</li>
-          <li class="ui item">If an issue is <a class="ui mini basic orange label">WAITING</a> and you are the assignee, please complete the task or follow-up with the reporter for help.</li>
+          <li class="ui item">If the issue is changed to <em>User Acceptance Testing</em> (UAT) then it is waiting for the Reporter to review the issue and confirm it is completed.</li>
+          <li class="ui item">The reporter should receive a notification letting them know which environment the issues was deployed to. (prd-dfci, prd-my, prd-zurich, demo or other test environments).</li>
+          <li class="ui item">Or the developer will leave a comment clearly letting the reporter know when and where they can confirm the issue is fixed.</li>
+          <li class="ui item">Once the reporter has confirmed the issue is fixed, then he/she can move the issue to DONE.</li>
         </ol>
       </div>
 
@@ -130,37 +106,11 @@ body {
 
 </div>
 
-<!-- Examples -->
-<div class="ui modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Example 1
-  </div>
-  <div class="image content">
-    <div class="image">
-      <img alt="example-one" src="images/example1-description-links.png"
-      style="max-width: 600px">
-    </div>
-    <div class="description">
-      This defect has a small intro description. It also has a prerequisite to
-      setup the functionality required for the main action.
-    </div>
-  </div>
-  <div class="actions">
-    <div class="ui button">Cancel</div>
-    <div class="ui button">OK</div>
-  </div>
-</div>
-
 <script>
-$(document).ready(function(){
-  $('.ui.modal').modal('attach events', '#example1', 'show');
-});
-</script>
 
-<script>
+// Requires jQuery!
 jQuery.ajax({
-url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/e3105b/100016/c/1000.0.10/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=2e656d00",
+url: "https://ilabdev.atlassian.net/s/f854cdb069361040ccdd74988bb7959f-T/-e9m5hs/72002/3c466bf91a4efe460c93d6b348cf1cac/2.0.13/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en-US&collectorId=2390c3d2",
 type: "get",
 cache: true,
 dataType: "script"
@@ -177,8 +127,8 @@ window.ATL_JQ_PAGE_PROPS = {
 
   // ==== we add the code below to set the field values ====
 fieldValues: {
-          summary : 'Please describe the issue in 60 words or less',
-          description : 'h6.  Steps to reproduce incident (listed): \n# \n# \n\nh6. Actual Results: \n- \n\nh6. Expected Results:\n- \n\nh6. User Reporting (first name last name; email; iLab role) \n\nh6. Please also provide any other information that might be useful, such as:\n- url: mandatory\n- url to one or more pages where you encountered the bug; or\n- browser: mandatory\n- whether the problem appears every time, only occasionally, only on certain pages, or only in specific circumstances.\n- Link to a video or screencast',
+          summary : ' ',
+          description : '*Issue Description:* \n\n*What exact steps were taken up to experiencing the issue?* \n\n*What happened?* \n\n*What was supposed to happen?* \n\n*User(s) it is affecting:* \n\n*User login email:* \n\n*User role(s):* \n\n*System(s):* \n\n*Link where issue occurred:* ',
           priority : '3'
              }};
 
