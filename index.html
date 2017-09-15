@@ -31,10 +31,11 @@ body {
 <div class="ui centered grid">
   <div class="row">
     <div class="ui center aligned">
-      <h1 class="ui header">Incident (Bug) Submission Form</h1>
+      <h1 class="ui header">Incident (Bug) Submission Forms</h1>
       <form id="incidentForm" class="ui form">
         <br>
-        <button id="feedback-link" class="ui primary button">Open the Bug Form</button>
+        <button id="feedback-link" class="ui button">Regular Bug Form</button>
+        <button id="feedback-link-urgent" class="ui primary button">Urgent Bug Form</button>
       </form>
 
     </div> <!-- ui center aligned -->
@@ -76,7 +77,7 @@ body {
     <div class="ui divider"></div>
   </div>
   <div class="left aligned eight wide column">
-    <h3 class="ui header">New Bug Reporting Policies for JIRA</h3>
+    <h3 class="ui header">Bug Reporting Policies for Jira</h3>
 
     <h4 class="ui header">Bug Submission Process</h4>
     <h4 class="ui sub header">Fill out each field in the form including the priority.</h4>
@@ -84,16 +85,13 @@ body {
     <div class="ui very relaxed list">
       <div class="item">
         <div class="header">How do I add an incident or bug issue?</div>
-        To add bug tasks and receive notifications from JIRA you must have an account so please create your JIRA accounts! <a href="https://ilabdev.atlassian.net/">https://ilabdev.atlassian.net/</a>
+        To add bug tasks and receive notifications from Jira you must have an account so please create your Jira accounts! <a href="https://ilabdev.atlassian.net/">https://ilabdev.atlassian.net/</a>
         <ol class="ui list">
-          <li class="item">Click on the <em>Open the Bug Form </em>button</li>
+          <li class="item">Click on the <em>Regular Bug Form </em>button or the
+            <em>Urgent Bug Form</em></li>
           <li class="item">The <em>Summary</em> is the title.</li>
           <li class="item">Please fill out all questions in the description field.</li>
           <li class="item">Do not forget to include images or videos (you can save videos to google+ <a href="https://drive.google.com/drive/folders/0B4dQNjeCUQLAemlKaVFmYkVDNTA">here</a>).</li>
-          <li class="item">Do not forget to update the priority.
-          <ol>
-            <li>It is very important that you select <strong>Urgent</strong> for urgent bugs or tasks.</li>
-          </ol>
           </li>
           <li class="item">If someone else needs to be added as a watcher please indicate that in the description.</li>
           <li class="item">Once the bug is submitted, <em>Priority</em> should only be updated by Product Management and Engineering Management.</li>
@@ -108,8 +106,8 @@ body {
     <div class="ui very relaxed list">
       <div class="item"><div class="header">How do I track bugs?</div>
         <ol class="ui list">
-          <li class="item">You will be added as a reporter to any bug you report. Please remain logged into JIRA for this to happen automatically.</li>
-          <li class="item">You will receive updates when the JIRA issue is updated.</li>
+          <li class="item">You will be added as a reporter to any bug you report. Please remain logged into Jira for this to happen automatically.</li>
+          <li class="item">You will receive updates when the Jira issue is updated.</li>
           <li class="item">Many factors are considered by Product Development when prioritizing an issue.</li>
           <li class="item">Use <em>Search for Issues</em> to create a filter to track all bugs that need your attention.</li>
           <li class="item">If an issue needs assistance from the reporter, another iLab team member or a third party it will be marked as <em>On Hold</em> with a comment as to what is needed to continue resolving the issue.</li>
@@ -119,7 +117,9 @@ body {
         <ol class="ui list">
           <li class="ui item">If the issue is changed to <a class="ui mini basic green label">CLOSED & LIVE</a>, you may want to check it yourself. If this incident has been resolved by Engineering adequately, please move the issue to LIVE & CONFIRMED. .</li>
           <li class="ui item">Every issue goes through QA.</li>
-          <li class="ui item">If an issue is <a class="ui mini basic orange label">WAITING</a> and you are the assignee, please complete the task or follow-up with the reporter for help.</li>
+          <li class="ui item">If an issue is <a class="ui mini basic orange
+              label">WAITING</a> and you are the assignee, please complete the
+            task or follow-up with the last assignee (i.e., R&D) for help.</li>
         </ol>
       </div>
 
@@ -160,27 +160,59 @@ $(document).ready(function(){
 
 <script>
 jQuery.ajax({
-url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/e3105b/100016/c/1000.0.10/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=2390c3d2",
-type: "get",
-cache: true,
-dataType: "script"
+    url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/e3105b/100016/c/1000.0.10/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=2390c3d2",
+    type: "get",
+    cache: true,
+    dataType: "script"
 });
 
-window.ATL_JQ_PAGE_PROPS = {
+jQuery.ajax({
+    url: "https://ilabdev.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e-T/vzcsfp/b/1/3d70dff4c40bd20e976d5936642e2171/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?locale=en&collectorId=d8a81bd7",
+    type: "get",
+    cache: true,
+    dataType: "script"
+});
+
+
+
+
+window.ATL_JQ_PAGE_PROPS = $.extend(window.ATL_JQ_PAGE_PROPS, {
+  'd8a81bd7':{
+	triggerFunction: function(showCollectorDialog) {
+    $("#feedback-link-urgent").click(function(e) {
+      e.preventDefault();
+      showCollectorDialog();
+    });
+    }
+  , // ==== we add the code below to set the field values ====
+    
+  fieldValues: {
+    summary : 'Please describe the urgent issue in 60 words or less',
+    description : 'h6.  Steps to reproduce incident (listed): \n# \n# \n\nh6. Actual Results: \n- \n\nh6. Expected Results:\n- \n\nh6. User Reporting (first name last name; email; iLab role) \n\nh6. Please also provide any other information that might be useful, such as:\n- url: mandatory\n- url to one or more pages where you encountered the bug; or\n- browser: mandatory\n- whether the problem appears every time, only occasionally, only on certain pages, or only in specific circumstances.\n- Link to a video or screencast \n- Severity -- \(e.g., number of people affected\) ',
+    priority : '10000',
+    customfield_10017 : 'ALL-2'
+    }
+
+  }
+
+  ,'2390c3d2': {
   "triggerFunction": function(showCollectorDialog) {
-    jQuery("#feedback-link").click(function(e) {
+    $("#feedback-link").click(function(e) {
         e.preventDefault();
         showCollectorDialog();
         });
-  },
-
-
+  }
   // ==== we add the code below to set the field values ====
-fieldValues: {
-          summary : 'Please describe the issue in 60 words or less',
-          description : 'h6.  Steps to reproduce incident (listed): \n# \n# \n\nh6. Actual Results: \n- \n\nh6. Expected Results:\n- \n\nh6. User Reporting (first name last name; email; iLab role) \n\nh6. Please also provide any other information that might be useful, such as:\n- url: mandatory\n- url to one or more pages where you encountered the bug; or\n- browser: mandatory\n- whether the problem appears every time, only occasionally, only on certain pages, or only in specific circumstances.\n- Link to a video or screencast',
-          priority : '3'
-             }};
+  ,
+    fieldValues: {
+      summary : 'Please describe the issue in 60 words or less',
+      description : 'h6.  Steps to reproduce incident (listed): \n# \n# \n\nh6. Actual Results: \n- \n\nh6. Expected Results:\n- \n\nh6. User Reporting (first name last name; email; iLab role) \n\nh6. Please also provide any other information that might be useful, such as:\n- url: mandatory\n- url to one or more pages where you encountered the bug; or\n- browser: mandatory\n- whether the problem appears every time, only occasionally, only on certain pages, or only in specific circumstances.\n- Link to a video or screencast \n severity',
+      priority : '3',
+      customfield_10017 : 'ALL-3'
+    }
+  }
+
+});
 
 
 </script>
